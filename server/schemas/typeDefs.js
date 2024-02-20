@@ -32,3 +32,5 @@ type Mutation {
   saveBook(bookData: BookInput!): User
   removeBook(bookId: String!): User
 },`
+
+module.exports = typeDefs;
