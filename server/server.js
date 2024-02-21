@@ -9,6 +9,9 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+var cors = require('cors');
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -17,6 +20,11 @@ const server = new ApolloServer({
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
+
+  app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+  }));
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
